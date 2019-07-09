@@ -1,2 +1,13 @@
 ---
 # tasks file for demo
+
+- name: Set Data Directories
+  file:
+    path: "{{ dir.path }}"
+    state: directory
+    owner: "{{ dir.owner }}"
+    group: "{{ dir.group }}"
+    mode: "{{ dir.mode }}"
+  loop: "{{ demo_linux_data_dirs }}"
+  loop_control:
+    loop_var: dir
