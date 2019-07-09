@@ -1,6 +1,12 @@
 ---
 # defaults file for demo
 
+demo_users:
+  - name: demo
+    group: demo
+  - name: customer1
+    group: customer1
+
 demo_linux_data_dirs:
   - { path: /data, owner: demo, group: demo, mode: 740, recurse: no}
   - { path: /data/customer1, owner: customer1, group: customer1, mode: 774, recurese: yes}

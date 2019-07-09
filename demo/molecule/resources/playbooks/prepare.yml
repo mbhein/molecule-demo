@@ -1,0 +1,27 @@
+---
+# prepare our molecule instances 
+
+- hosts: all
+  gather_facts: true
+  become: true
+  tasks:
+    
+    - include_vars:
+        file: ../../../defaults/main.yml
+
+    - name: Provision Demo Groups
+      group:
+        name: "{{ user.group }}"
+        state: present
+      loop: "{{ demo_users }}"
+      loop_control:
+        loop_var: user
+    
+    - name: Provision Demo Users
+      user:
+        name: "{{ user.name }}"
+        group: "{{ user.group }}"
+        state: present
+      loop: "{{ demo_users }}"
+      loop_control:
+        loop_var: user
